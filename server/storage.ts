@@ -122,6 +122,10 @@ export class DatabaseStorage implements IStorage {
   }
 
   async incrementFeedSourceError(id: number): Promise<void> {
+    if (!isPostgres) {
+      sqliteDb!.prepare("UPDATE feed_sources SET error_count = error_count + 1 WHERE id = ?").run(id);
+      return;
+    }
     await this.d.execute(
       sql`UPDATE feed_sources SET error_count = error_count + 1 WHERE id = ${id}`
     );
