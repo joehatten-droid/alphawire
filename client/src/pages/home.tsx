@@ -254,10 +254,10 @@ function ArticleColumn({ category, articles }: { category: string; articles: Art
     >
       <h2
         style={{
-          fontFamily: "Arial, Helvetica, sans-serif",
+          fontFamily: "'Courier New', Courier, monospace",
           fontSize: "13px",
           fontWeight: "bold",
-          letterSpacing: "1px",
+          letterSpacing: "2px",
           marginBottom: 12,
           paddingBottom: 6,
           borderBottom: "2px solid #000",
