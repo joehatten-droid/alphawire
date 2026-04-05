@@ -56,24 +56,20 @@ function QuoteChip({ q, compact = false, dark = false }: { q: Quote; compact?: b
   const up = q.changePercent !== null && q.changePercent >= 0;
   const color = q.changePercent === null
     ? (dark ? "#888" : "#666")
-    : up
-    ? "#00aa00"
-    : "#cc0000";
+    : up ? "#00aa00" : "#cc0000";
   const priceColor = dark ? "#cccccc" : "#111111";
   const symbolColor = dark ? "#ffffff" : "#000000";
 
   return (
-    <span
-      style={{
-        display: "inline-flex",
-        alignItems: "baseline",
-        marginRight: compact ? 18 : 22,
-        gap: 3,
-        fontFamily: "Arial, Helvetica, sans-serif",
-        fontSize: compact ? 12 : 13,
-        whiteSpace: "nowrap",
-      }}
-    >
+    <span style={{
+      display: "inline-flex",
+      alignItems: "baseline",
+      marginRight: compact ? 14 : 18,
+      gap: 3,
+      fontFamily: "Arial, Helvetica, sans-serif",
+      fontSize: compact ? 11 : 12,
+      whiteSpace: "nowrap",
+    }}>
       <span style={{ fontWeight: "bold", color: symbolColor }}>{q.symbol}</span>
       {q.price !== null && (
         <>
@@ -112,39 +108,29 @@ function ScrollingTicker({ quotes }: { quotes: Quote[] }) {
   const doubled = [...quotes, ...quotes];
 
   return (
-    <div
-      style={{
-        background: "#0a0a14",
-        borderBottom: "1px solid #333",
-        padding: "5px 0",
-        overflow: "hidden",
-        position: "relative",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <span
-        style={{
-          fontFamily: "Arial, Helvetica, sans-serif",
-          fontSize: 11,
-          fontWeight: "bold",
-          color: "#666",
-          letterSpacing: 1,
-          whiteSpace: "nowrap",
-          paddingLeft: 10,
-          paddingRight: 12,
-          borderRight: "1px solid #333",
-          marginRight: 10,
-          flexShrink: 0,
-        }}
-      >
-        AI
-      </span>
+    <div style={{
+      background: "#0a0a14",
+      borderBottom: "1px solid #333",
+      padding: "4px 0",
+      overflow: "hidden",
+      display: "flex",
+      alignItems: "center",
+    }}>
+      <span style={{
+        fontFamily: "Arial, Helvetica, sans-serif",
+        fontSize: 10,
+        fontWeight: "bold",
+        color: "#666",
+        letterSpacing: 1,
+        whiteSpace: "nowrap",
+        paddingLeft: 8,
+        paddingRight: 10,
+        borderRight: "1px solid #333",
+        marginRight: 8,
+        flexShrink: 0,
+      }}>AI</span>
       <div style={{ overflow: "hidden", flex: 1 }}>
-        <div
-          ref={trackRef}
-          style={{ display: "inline-flex", transform: `translateX(-${offset}px)`, willChange: "transform" }}
-        >
+        <div ref={trackRef} style={{ display: "inline-flex", transform: `translateX(-${offset}px)`, willChange: "transform" }}>
           {doubled.map((q, i) => <QuoteChip key={`${q.symbol}-${i}`} q={q} compact dark />)}
         </div>
       </div>
@@ -154,31 +140,25 @@ function ScrollingTicker({ quotes }: { quotes: Quote[] }) {
 
 function Mag7Bar({ quotes }: { quotes: Quote[] }) {
   return (
-    <div
-      style={{
-        background: "#111111",
-        borderTop: "2px solid #000",
-        borderBottom: "2px solid #000",
-        padding: "6px 12px",
-        overflowX: "auto",
-        whiteSpace: "nowrap",
-      }}
-    >
-      <span
-        style={{
-          fontFamily: "Arial, Helvetica, sans-serif",
-          fontSize: 11,
-          fontWeight: "bold",
-          color: "#888",
-          marginRight: 14,
-          letterSpacing: 2,
-        }}
-      >
-        MAG 7
-      </span>
+    <div style={{
+      background: "#111111",
+      borderTop: "1px solid #000",
+      borderBottom: "1px solid #000",
+      padding: "4px 10px",
+      overflowX: "auto",
+      whiteSpace: "nowrap",
+    }}>
+      <span style={{
+        fontFamily: "Arial, Helvetica, sans-serif",
+        fontSize: 10,
+        fontWeight: "bold",
+        color: "#888",
+        marginRight: 12,
+        letterSpacing: 2,
+      }}>MAG 7</span>
       {quotes.length === 0
         ? ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA"].map((s) => (
-            <span key={s} style={{ fontFamily: "Arial, sans-serif", fontSize: 13, color: "#666", marginRight: 20 }}>
+            <span key={s} style={{ fontFamily: "Arial, sans-serif", fontSize: 12, color: "#666", marginRight: 18 }}>
               <strong style={{ color: "#fff" }}>{s}</strong> —
             </span>
           ))
@@ -200,14 +180,14 @@ function TopStory({ articles }: { articles: GroupedArticles }) {
   const sub = allArticles.filter((a) => a.id !== top.id).slice(0, 2);
 
   return (
-    <div style={{ textAlign: "center", padding: "24px 20px 16px", borderBottom: "2px solid #000" }}>
+    <div style={{ textAlign: "center", padding: "20px 20px 14px", borderBottom: "2px solid #000" }}>
       <a
         href={top.link}
         target="_blank"
         rel="noopener noreferrer"
         style={{
           color: "#cc0000",
-          fontSize: "32px",
+          fontSize: "28px",
           fontWeight: "bold",
           textDecoration: "none",
           lineHeight: 1.2,
@@ -220,14 +200,14 @@ function TopStory({ articles }: { articles: GroupedArticles }) {
         {top.aiHeadline || top.title}
       </a>
       {sub.map((article) => (
-        <div key={article.id} style={{ marginTop: 10 }}>
+        <div key={article.id} style={{ marginTop: 8 }}>
           <a
             href={article.link}
             target="_blank"
             rel="noopener noreferrer"
             style={{
               color: "#222",
-              fontSize: "18px",
+              fontSize: "16px",
               textDecoration: "none",
               fontFamily: "Georgia, serif",
             }}
@@ -244,57 +224,42 @@ function ArticleColumn({ category, articles }: { category: string; articles: Art
   if (articles.length === 0) return null;
 
   return (
-    <div
-      style={{
-        flex: 1,
-        minWidth: 280,
-        padding: "14px 18px",
-        borderRight: "1px solid #ccc",
-      }}
-    >
-      <h2
-        style={{
-          fontFamily: "'Courier New', Courier, monospace",
-          fontSize: "13px",
-          fontWeight: "bold",
-          letterSpacing: "2px",
-          marginBottom: 12,
-          paddingBottom: 6,
-          borderBottom: "2px solid #000",
-          color: "#000",
-        }}
-        data-testid={`section-${category}`}
-      >
+    <div style={{ flex: 1, minWidth: 280, padding: "12px 16px", borderRight: "1px solid #ccc" }}>
+      <h2 style={{
+        fontFamily: "'Courier New', Courier, monospace",
+        fontSize: "12px",
+        fontWeight: "bold",
+        letterSpacing: "2px",
+        marginBottom: 10,
+        paddingBottom: 5,
+        borderBottom: "2px solid #000",
+        color: "#000",
+      }} data-testid={`section-${category}`}>
         {CATEGORY_LABELS[category] || category.toUpperCase()}
       </h2>
       {articles.map((article, i) => {
         const displayTitle = article.aiHeadline || article.title;
         return (
-          <div key={article.id} style={{ marginBottom: 11 }}>
-            <span style={{ color: "#999", marginRight: 4 }}>&raquo;</span>
+          <div key={article.id} style={{ marginBottom: 9 }}>
+            <span style={{ color: "#999", marginRight: 3 }}>&raquo;</span>
             <a
               href={article.link}
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                color: i === 0 ? "#cc0000" : "#003366",
-                fontSize: i === 0 ? "17px" : "15px",
+                color: i === 0 ? "#003366" : "#003366",
+                fontSize: i === 0 ? "15px" : "13.5px",
                 fontWeight: i === 0 ? "bold" : "normal",
                 textDecoration: "none",
                 lineHeight: 1.4,
-                fontFamily: "Georgia, 'Times New Roman', serif",
+                fontFamily: "Arial, Helvetica, sans-serif",
               }}
               data-testid={`article-link-${article.id}`}
             >
               {displayTitle}
             </a>
             {article.aiHeadline && (
-              <span
-                title="AI-rewritten headline"
-                style={{ marginLeft: 5, fontSize: 9, color: "#aaa", fontFamily: "monospace", verticalAlign: "middle" }}
-              >
-                ✦
-              </span>
+              <span title="AI-rewritten headline" style={{ marginLeft: 4, fontSize: 9, color: "#aaa", fontFamily: "monospace", verticalAlign: "middle" }}>✦</span>
             )}
           </div>
         );
@@ -319,58 +284,36 @@ export default function HomePage() {
 
   const now = new Date();
   const timeStr = now.toLocaleString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-    timeZoneName: "short",
+    weekday: "long", month: "long", day: "numeric", year: "numeric",
+    hour: "numeric", minute: "2-digit", timeZoneName: "short",
   });
 
   return (
     <div style={{ maxWidth: 1100, margin: "0 auto", background: "#fff" }}>
       {/* Header */}
-      <div style={{ textAlign: "center", padding: "20px 0 8px", borderBottom: "3px solid #000" }}>
-        <h1
-          style={{
-            fontFamily: "Georgia, 'Times New Roman', serif",
-            fontSize: "64px",
-            fontWeight: "bold",
-            letterSpacing: "1px",
-            marginBottom: 4,
-            color: "#000",
-          }}
-          data-testid="site-title"
-        >
+      <div style={{ textAlign: "center", padding: "16px 0 6px", borderBottom: "2px solid #000" }}>
+        <h1 style={{
+          fontFamily: "'Courier New', Courier, monospace",
+          fontSize: "52px",
+          fontWeight: "bold",
+          letterSpacing: "3px",
+          marginBottom: 4,
+          color: "#000",
+        }} data-testid="site-title">
           the Alpha wire
         </h1>
-        <div
-          style={{
-            fontFamily: "Georgia, serif",
-            fontSize: "18px",
-            fontStyle: "italic",
-            color: "#333",
-          }}
-        >
+        <div style={{ fontFamily: "Georgia, serif", fontSize: "16px", fontStyle: "italic", color: "#555" }}>
           AI News for Investors
         </div>
-        <div
-          style={{
-            fontFamily: "Arial, Helvetica, sans-serif",
-            fontSize: "12px",
-            color: "#888",
-            marginTop: 6,
-          }}
-        >
+        <div style={{ fontFamily: "'Courier New', monospace", fontSize: "11px", color: "#999", marginTop: 4 }}>
           Last updated: {timeStr}
         </div>
       </div>
 
-      {/* MAG 7 ticker — dark bar */}
+      {/* MAG 7 ticker */}
       <Mag7Bar quotes={quotes?.mag7 ?? []} />
 
-      {/* AI Universe — scrolling belt */}
+      {/* AI Universe scrolling belt */}
       <ScrollingTicker quotes={quotes?.aiUniverse ?? []} />
 
       {/* Top Story */}
@@ -378,7 +321,7 @@ export default function HomePage() {
 
       {/* Loading State */}
       {articlesLoading && (
-        <div style={{ textAlign: "center", padding: 40, color: "#888", fontFamily: "Georgia, serif", fontSize: 16 }}>
+        <div style={{ textAlign: "center", padding: 40, color: "#888", fontFamily: "Georgia, serif", fontSize: 15 }}>
           Loading pipeline data...
         </div>
       )}
@@ -386,10 +329,8 @@ export default function HomePage() {
       {/* Empty State */}
       {grouped && Object.values(grouped).every((arr) => arr.length === 0) && (
         <div style={{ textAlign: "center", padding: 40, color: "#888" }}>
-          <p style={{ fontFamily: "Georgia, serif", fontSize: 16 }}>
-            No articles yet. The pipeline is running — articles will appear shortly.
-          </p>
-          <p style={{ fontFamily: "Arial, sans-serif", fontSize: 13, marginTop: 8 }}>
+          <p style={{ fontFamily: "Georgia, serif", fontSize: 15 }}>No articles yet. The pipeline is running — articles will appear shortly.</p>
+          <p style={{ fontFamily: "Arial, sans-serif", fontSize: 12, marginTop: 8 }}>
             Visit <a href="#/admin" style={{ color: "#003366" }}>#/admin</a> to check pipeline status.
           </p>
         </div>
@@ -398,17 +339,12 @@ export default function HomePage() {
       {/* Three-Column Layout */}
       {grouped && (
         <>
-          {/* Row 1 */}
           <div style={{ display: "flex", flexWrap: "wrap" }}>
             {CATEGORY_ORDER.slice(0, 3).map((cat) => (
               <ArticleColumn key={cat} category={cat} articles={grouped[cat] || []} />
             ))}
           </div>
-
-          {/* Divider */}
-          <div style={{ borderTop: "2px solid #000", margin: "8px 0" }} />
-
-          {/* Row 2 */}
+          <div style={{ borderTop: "2px solid #000", margin: "6px 0" }} />
           <div style={{ display: "flex", flexWrap: "wrap" }}>
             {CATEGORY_ORDER.slice(3).map((cat) => (
               <ArticleColumn key={cat} category={cat} articles={grouped[cat] || []} />
@@ -418,17 +354,10 @@ export default function HomePage() {
       )}
 
       {/* Footer */}
-      <div
-        style={{
-          textAlign: "center",
-          padding: "20px 0",
-          borderTop: "3px solid #000",
-          marginTop: 16,
-          fontFamily: "Arial, Helvetica, sans-serif",
-          fontSize: "12px",
-          color: "#888",
-        }}
-      >
+      <div style={{
+        textAlign: "center", padding: "16px 0", borderTop: "2px solid #000", marginTop: 16,
+        fontFamily: "Arial, Helvetica, sans-serif", fontSize: "11px", color: "#999",
+      }}>
         &copy; {now.getFullYear()} The Alpha Wire &mdash; AI News for Investors
       </div>
     </div>
