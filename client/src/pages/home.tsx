@@ -334,10 +334,10 @@ export default function HomePage() {
       <div style={{ textAlign: "center", padding: "20px 0 8px", borderBottom: "3px solid #000" }}>
         <h1
           style={{
-            fontFamily: "Georgia, 'Times New Roman', serif",
+            fontFamily: "'Courier New', Courier, monospace",
             fontSize: "64px",
             fontWeight: "bold",
-            letterSpacing: "1px",
+            letterSpacing: "2px",
             marginBottom: 4,
             color: "#000",
           }}
