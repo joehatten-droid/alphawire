@@ -248,11 +248,11 @@ function ArticleColumn({ category, articles }: { category: string; articles: Art
               rel="noopener noreferrer"
               style={{
                 color: i === 0 ? "#003366" : "#003366",
-                fontSize: i === 0 ? "15px" : "13.5px",
+                fontSize: "18px",
                 fontWeight: i === 0 ? "bold" : "normal",
                 textDecoration: "none",
                 lineHeight: 1.4,
-                fontFamily: "Arial, Helvetica, sans-serif",
+                fontFamily: "Georgia, 'Times New Roman', Times, serif",
               }}
               data-testid={`article-link-${article.id}`}
             >
