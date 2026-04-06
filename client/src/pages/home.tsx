@@ -187,12 +187,12 @@ function TopStory({ articles }: { articles: GroupedArticles }) {
         rel="noopener noreferrer"
         style={{
           color: "#cc0000",
-          fontSize: "28px",
-          fontWeight: "bold",
+          fontSize: "36px",
+          fontWeight: 700,
           textDecoration: "none",
           lineHeight: 1.2,
           display: "block",
-          fontFamily: "Georgia, 'Times New Roman', serif",
+          fontFamily: "Georgia, 'Times New Roman', Times, serif",
           textTransform: "uppercase",
         }}
         data-testid="top-story-link"
