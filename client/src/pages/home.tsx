@@ -57,8 +57,8 @@ function QuoteChip({ q, compact = false, dark = false }: { q: Quote; compact?: b
   const color = q.changePercent === null
     ? (dark ? "#888" : "#666")
     : up ? "#00aa00" : "#cc0000";
-  const priceColor = dark ? "#cccccc" : "#111111";
-  const symbolColor = dark ? "#ffffff" : "#000000";
+  const priceColor = "#111111";
+  const symbolColor = "#000000";
 
   return (
     <span style={{
@@ -110,8 +110,9 @@ function ScrollingTicker({ quotes }: { quotes: Quote[] }) {
 
   return (
     <div style={{
-      background: "#0a0a14",
-      borderBottom: "1px solid #333",
+      background: "#fff",
+      borderTop: "1px solid #ccc",
+      borderBottom: "1px solid #ccc",
       padding: "4px 0",
       overflow: "hidden",
       display: "flex",
@@ -121,12 +122,12 @@ function ScrollingTicker({ quotes }: { quotes: Quote[] }) {
         fontFamily: "'Courier New', Courier, monospace",
         fontSize: 13,
         fontWeight: 700,
-        color: "#666",
+        color: "#333",
         letterSpacing: 1,
         whiteSpace: "nowrap",
         paddingLeft: 8,
         paddingRight: 10,
-        borderRight: "1px solid #333",
+        borderRight: "1px solid #ccc",
         marginRight: 8,
         flexShrink: 0,
       }}>AI</span>
@@ -142,9 +143,9 @@ function ScrollingTicker({ quotes }: { quotes: Quote[] }) {
 function Mag7Bar({ quotes }: { quotes: Quote[] }) {
   return (
     <div style={{
-      background: "#111111",
-      borderTop: "1px solid #000",
-      borderBottom: "1px solid #000",
+      background: "#fff",
+      borderTop: "1px solid #ccc",
+      borderBottom: "1px solid #ccc",
       padding: "4px 10px",
       overflowX: "auto",
       whiteSpace: "nowrap",
@@ -153,17 +154,17 @@ function Mag7Bar({ quotes }: { quotes: Quote[] }) {
         fontFamily: "'Courier New', Courier, monospace",
         fontSize: 13,
         fontWeight: 700,
-        color: "#888",
+        color: "#333",
         marginRight: 12,
         letterSpacing: 2,
       }}>MAG 7</span>
       {quotes.length === 0
         ? ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA"].map((s) => (
-            <span key={s} style={{ fontFamily: "Arial, sans-serif", fontSize: 12, color: "#666", marginRight: 18 }}>
-              <strong style={{ color: "#fff" }}>{s}</strong> —
+            <span key={s} style={{ fontFamily: "'Courier New', Courier, monospace", fontSize: 13, color: "#666", marginRight: 18 }}>
+              <strong style={{ color: "#000" }}>{s}</strong> —
             </span>
           ))
-        : quotes.map((q) => <QuoteChip key={q.symbol} q={q} dark />)}
+        : quotes.map((q) => <QuoteChip key={q.symbol} q={q} dark={false} />)}
     </div>
   );
 }
