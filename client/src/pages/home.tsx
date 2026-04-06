@@ -66,8 +66,9 @@ function QuoteChip({ q, compact = false, dark = false }: { q: Quote; compact?: b
       alignItems: "baseline",
       marginRight: compact ? 14 : 18,
       gap: 3,
-      fontFamily: "Arial, Helvetica, sans-serif",
-      fontSize: compact ? 11 : 12,
+      fontFamily: "'Courier New', Courier, monospace",
+      fontSize: 13,
+      fontWeight: 700,
       whiteSpace: "nowrap",
     }}>
       <span style={{ fontWeight: "bold", color: symbolColor }}>{q.symbol}</span>
@@ -117,9 +118,9 @@ function ScrollingTicker({ quotes }: { quotes: Quote[] }) {
       alignItems: "center",
     }}>
       <span style={{
-        fontFamily: "Arial, Helvetica, sans-serif",
-        fontSize: 10,
-        fontWeight: "bold",
+        fontFamily: "'Courier New', Courier, monospace",
+        fontSize: 13,
+        fontWeight: 700,
         color: "#666",
         letterSpacing: 1,
         whiteSpace: "nowrap",
@@ -149,9 +150,9 @@ function Mag7Bar({ quotes }: { quotes: Quote[] }) {
       whiteSpace: "nowrap",
     }}>
       <span style={{
-        fontFamily: "Arial, Helvetica, sans-serif",
-        fontSize: 10,
-        fontWeight: "bold",
+        fontFamily: "'Courier New', Courier, monospace",
+        fontSize: 13,
+        fontWeight: 700,
         color: "#888",
         marginRight: 12,
         letterSpacing: 2,
