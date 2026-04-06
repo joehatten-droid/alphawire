@@ -24,7 +24,10 @@ const CATEGORY_KEYWORDS: Record<string, string[]> = {
   earnings: [
     "earnings", "revenue", "quarterly", "q1", "q2", "q3", "q4", "profit",
     "financial results", "beat estimates", "missed estimates", "guidance",
-    "eps", "capex", "spending", "market cap",
+    "eps", "capex", "spending", "market cap", "run rate", "arr", "annual recurring",
+    "gross margin", "operating income", "net income", "cash flow", "valuation",
+    "stock", "shares", "analyst", "upgrade", "downgrade", "price target",
+    "beats", "misses", "outlook", "forecast", "full year", "fiscal",
   ],
   policy: [
     "regulation", "congress", "senate", "white house", "executive order",
@@ -156,6 +159,27 @@ export async function runPipeline(): Promise<{
 
 export async function seedFeedSources() {
   const existingSources = await storage.getAllFeedSources();
+
+  // New feeds to add if not already present (checked by URL)
+  const additionalFeeds = [
+    { name: "Seeking Alpha Tech", url: "https://seekingalpha.com/tag/technology/feed.xml", category: "earnings" },
+    { name: "Yahoo Finance Tech", url: "https://finance.yahoo.com/rss/topstories", category: "earnings" },
+    { name: "Barron's Technology", url: "https://www.barrons.com/topics/technology?mod=topics_main_menu&format=rss", category: "earnings" },
+    { name: "Investor's Business Daily Tech", url: "https://www.investors.com/news/technology/feed/", category: "earnings" },
+  ];
+
+  const existingUrls = new Set(existingSources.map((s) => s.url));
+  for (const feed of additionalFeeds) {
+    if (!existingUrls.has(feed.url)) {
+      try {
+        await storage.createFeedSource({ name: feed.name, url: feed.url, category: feed.category, enabled: true });
+        console.log(`[Seed] Added new feed: ${feed.name}`);
+      } catch (err: any) {
+        console.log(`[Seed] Skipped ${feed.name}: ${err.message}`);
+      }
+    }
+  }
+
   if (existingSources.length > 0) {
     console.log(`[Seed] ${existingSources.length} feed sources already exist.`);
     return;
