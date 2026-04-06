@@ -227,7 +227,7 @@ function ArticleColumn({ category, articles }: { category: string; articles: Art
     <div style={{ flex: 1, minWidth: 280, padding: "12px 16px", borderRight: "1px solid #ccc" }}>
       <h2 style={{
         fontFamily: "'Courier New', Courier, monospace",
-        fontSize: "12px",
+        fontSize: "16px",
         fontWeight: "bold",
         letterSpacing: "2px",
         marginBottom: 10,
